@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <style>
+      html, body {
+        padding: 0;
+        margin: 0;
+      }
+      .navigation {
+        height: 200px;
+        background: #e4e4e4;
+        margin-bottom: 48px;
+      }
+      .footer {
+        height: 200px;
+        background: #e4e4e4;
+      }
+      .layout {
+        width: 1000px;
+        margin: 0 auto;
+      }
+      .teaser {
+        background: #63786a;
+      }
+      .teaser::after {
+        content: '';
+        display: block;
+        padding-top: 66.666667%;
+      }
+      .banner {
+        background: #222;
+      }
+      .banner::after {
+        content: '';
+        display: block;
+        padding-top: 20%;
+      }
+      .teaser, .banner, .navigation, .footer {
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .section {
+        margin-bottom: 24px;
+      }
+      .skeleton {
+        background: #f3f3f3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <nav class="navigation">
+        Nav
+      </nav>
+      <div class="section dynamic" data-dynamic-html='<article class="teaser">Teaser</article>'>
+        <article class="teaser skeleton">
+        </article>
+      </div>
+      <div class="section dynamic" data-dynamic-html='<article class="banner">Banner</article>'>
+        <article class="banner skeleton">
+        </article>
+      </div>
+      <div class="section dynamic" data-dynamic-html='<article class="teaser">Teaser</article>'>
+        <article class="teaser skeleton">
+        </article>
+      </div>
+      <div class="section dynamic" data-dynamic-html='<article class="teaser">Teaser</article>'>
+        <article class="teaser skeleton">
+        </article>
+      </div>
+      <footer class="footer">
+        Footer
+      </footer>
+    </div>
+  </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(event) {
+      const dynamicElements = document.getElementsByClassName('dynamic');
+
+      [...dynamicElements].forEach((element) => {
+        setTimeout(() => {
+          element.innerHTML = element.dataset.dynamicHtml;
+        }, 750)
+      })
+    });
+  </script>
+</html>
