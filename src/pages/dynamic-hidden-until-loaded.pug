@@ -1,0 +1,35 @@
+extends ../template.pug
+
+block content
+  .layout.hidden-loaded
+    nav.navigation Nav
+    .section.dynamic(data-dynamic-html="<article class='teaser'>Personalized teaser</article>", data-dynamic-timeout=1250)
+    .section.dynamic(data-dynamic-html="<article class='teaser'>Teaser</article>")
+      .teaser.skeleton
+    .section.dynamic(data-dynamic-html="<article class='banner'>Banner</article>")
+      .banner.skeleton
+    .section.dynamic(data-dynamic-html="<article class='teaser'>Teaser</article>")
+      .teaser.skeleton
+    .section.dynamic(data-dynamic-html="<article class='teaser'>Teaser</article>")
+      .teaser.skeleton
+    footer.footer Footer
+
+block scripts
+  script.
+    document.addEventListener('DOMContentLoaded', function(event) {
+      const dynamicElements = document.getElementsByClassName('dynamic');
+
+      [...dynamicElements].forEach((element) => {
+        setTimeout(() => {
+          element.innerHTML = element.dataset.dynamicHtml;
+        }, element.dataset.dynamicTimeout || 750)
+      })
+
+      const hiddenLoaded = document.querySelector('.hidden-loaded');
+
+      if (hiddenLoaded) {
+        setTimeout(() => {
+          hiddenLoaded.style.display = 'block';
+        }, 1250)
+      }
+    });

@@ -1,0 +1,13 @@
+{
+  "name": "cls",
+  "version": "1.0.0",
+  "repository": "git@github.com:onordgren/cls-poc.git",
+  "author": "Otto Nordgren <otto.nordgren@hm.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "pug src/pages -o dist"
+  },
+  "dependencies": {
+    "pug-cli": "^1.0.0-alpha6"
+  }
+}
