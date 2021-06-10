@@ -1,0 +1,26 @@
+extends ../template.pug
+
+block content
+  .layout
+    nav.navigation Nav
+    .section.dynamic(data-dynamic-html="<article class='teaser'>Teaser</article>")
+      .teaser.skeleton.skeleton-50
+    .section.dynamic(data-dynamic-html="<article class='banner'>Banner</article>")
+      .banner.skeleton.skeleton-50
+    .section.dynamic(data-dynamic-html="<article class='teaser'>Teaser</article>")
+      .teaser.skeleton.skeleton-50
+    .section.dynamic(data-dynamic-html="<article class='teaser'>Teaser</article>")
+      .teaser.skeleton.skeleton-50
+    footer.footer Footer
+
+block scripts
+  script.
+    document.addEventListener('DOMContentLoaded', function(event) {
+      const dynamicElements = document.getElementsByClassName('dynamic');
+
+      [...dynamicElements].forEach((element) => {
+        setTimeout(() => {
+          element.innerHTML = element.dataset.dynamicHtml;
+        }, 750)
+      })
+    });
